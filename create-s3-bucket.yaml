@@ -1,0 +1,17 @@
+# s3-bucket-creation-template.yaml
+
+AWSTemplateFormatVersion: "2010-09-09"
+Description: "Template to create an S3 bucket"
+
+Resources:
+  S3Bucket:
+    Type: AWS::S3::Bucket
+    Properties:
+      BucketName: cafebucket-smarfy
+
+Outputs:
+  BucketName:
+    Description: "cafe-s3-bucket"
+    Value: !Ref S3Bucket
+    Export:
+      Name: !Sub "${AWS::StackName}-bucketname"

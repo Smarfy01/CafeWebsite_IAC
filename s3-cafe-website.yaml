@@ -1,0 +1,19 @@
+AWSTemplateFormatVersion: "2010-09-09"
+Description: "Template to create and configure S3 bucket for static website hosting."
+
+Resources:
+  WebsiteConfiguration:
+    Type: AWS::S3::Bucket
+    Properties:
+      BucketName: cafebucket-smarfy # Use a unique name identifier when naming your s3 bucket
+      WebsiteConfiguration:
+        IndexDocument: index.html
+        ErrorDocument: error.html
+
+Outputs:
+  BucketName:
+    Description: "The S3 bucket name."
+    Value: !Ref WebsiteConfiguration  # Outputs the bucket name
+  WebsiteURL:
+    Description: "The URL of the static website hosted on the S3 bucket."
+    Value: !Sub "http://${WebsiteConfiguration}.s3-website-${AWS::Region}.amazonaws.com"  # Constructs the website URL
